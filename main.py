@@ -3,6 +3,8 @@ from constants import ASTEROID_MIN_RADIUS,SCREEN_WIDTH,ASTEROID_KINDS,ASTEROID_S
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+import sys
+
 def main():
     pygame.init()
     print("Starting Asteroids!")
@@ -37,6 +39,11 @@ def main():
         for obj in drawable_group:
             obj.draw(screen)        
         pygame.display.update()
+        
+        for asteroid in asteroid_group:
+            if player.checkCollision(asteroid):
+                print("Game over!")
+                sys.exit(1)
 
 
 if __name__ == "__main__":
