@@ -12,8 +12,8 @@ class CircleShape(pygame.sprite.Sprite):
         self.radius = radius
         
     
-    def radius(self,screen):
-        pass
+    # def radius(self,screen):
+    #     pass
     
     def update(self,dt):
         pass
