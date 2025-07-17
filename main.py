@@ -36,6 +36,7 @@ def main():
                 return
             
         print(f"Player current score: {player.score}")
+        print(f"player lives: {player.lives}")
         timeSinceLastFrameDrawn = timeClock.tick(60)
         dt = timeSinceLastFrameDrawn / 1000
         updatable_group.update(dt)
@@ -47,11 +48,13 @@ def main():
         pygame.display.update()
         
         for asteroid in asteroid_group:
+            if player.lives == 0:
+                print("Game over!")
+                sys.exit(1)
             if player.checkCollision(asteroid):
-                if player.lives == 0:
-                    print("Game over!")
-                    sys.exit(1)
                 player.lives -= 1
+                asteroid.kill()
+                player.centerPosition()
             for shot in shot_group:
                 if asteroid.checkCollision(shot):
                     print("Asteroid was hit!")
