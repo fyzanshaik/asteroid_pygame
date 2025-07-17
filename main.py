@@ -53,7 +53,7 @@ def main():
                 if asteroid.checkCollision(shot):
                     print("Asteroid was hit!")
                     shot.kill()
-                    asteroid.kill()
+                    asteroid.split()
                 
 
 
