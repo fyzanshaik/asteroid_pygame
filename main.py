@@ -35,6 +35,7 @@ def main():
                 print("Thanks for playing this game!")
                 return
             
+        print(f"Player current score: {player.score}")
         timeSinceLastFrameDrawn = timeClock.tick(60)
         dt = timeSinceLastFrameDrawn / 1000
         updatable_group.update(dt)
@@ -47,13 +48,15 @@ def main():
         
         for asteroid in asteroid_group:
             if player.checkCollision(asteroid):
-                print("Game over!")
-                sys.exit(1)
+                if player.lives == 0:
+                    print("Game over!")
+                    sys.exit(1)
+                player.lives -= 1
             for shot in shot_group:
                 if asteroid.checkCollision(shot):
                     print("Asteroid was hit!")
                     shot.kill()
-                    asteroid.split()
+                    asteroid.split(player)
                 
 
 
